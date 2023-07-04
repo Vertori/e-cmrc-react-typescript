@@ -11,4 +11,8 @@ export type ProductsType = {
   };
 };
 
-
+export type SidebarContextType = {
+  isOpen: boolean;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  handleClose: () => void;
+};
