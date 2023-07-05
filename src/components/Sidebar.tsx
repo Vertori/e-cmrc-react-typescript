@@ -1,11 +1,13 @@
 import { useContext } from "react";
 import { SidebarContext } from "../contexts/SidebarContext";
+import { CartContext } from "../contexts/CartContext";
 import { Link } from "react-router-dom";
 import { IoMdArrowForward } from "react-icons/io";
 import { FiTrash2 } from "react-icons/fi";
 
 const Sidebar = (): JSX.Element => {
   const { isOpen, setIsOpen, handleClose } = useContext(SidebarContext);
+
 
   return (
     <div
