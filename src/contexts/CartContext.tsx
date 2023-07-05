@@ -6,6 +6,9 @@ export const CartContext = createContext<CartContextType>({
   cart: [],
   addToCart: () => {},
   removeFromCart: () => {},
+  clearCart: () => {},
+  increaseAmount: () => {},
+  decreaseAmount: () => {},
 });
 
 const CartProvider = ({ children }: { children: React.ReactNode }) => {
@@ -44,8 +47,56 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
     setCart(newCart);
   };
 
+  // clear cart
+  const clearCart = () => {
+    setCart([]);
+  };
+
+  // increase amount
+  const increaseAmount = (id: number) => {
+    const cartItem = cart.find((item) => {
+      return item.id === id;
+    });
+    if (!cartItem) {
+      return;
+    }
+    addToCart(cartItem, id);
+  };
+
+  // decreaseAmount
+  const decreaseAmount = (id: number) => {
+    const cartItem = cart.find((item) => {
+      return item.id === id;
+    });
+    if (cartItem) {
+      const newCart = cart.map((item) => {
+        if (item.id === id) {
+          return {
+            ...item,
+            amount: cartItem.amount ? cartItem.amount - 1 : undefined,
+          };
+        } else {
+          return item;
+        }
+      });
+      setCart(newCart);
+    }
+    if (cartItem && cartItem.amount && cartItem.amount < 2) {
+      removeFromCart(id);
+    }
+  };
+
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart }}>
+    <CartContext.Provider
+      value={{
+        cart,
+        addToCart,
+        removeFromCart,
+        clearCart,
+        increaseAmount,
+        decreaseAmount,
+      }}
+    >
       {children}
     </CartContext.Provider>
   );

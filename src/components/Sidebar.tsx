@@ -7,8 +7,8 @@ import { FiTrash2 } from "react-icons/fi";
 import CartItem from "./CartItem";
 
 const Sidebar = (): JSX.Element => {
-  const { isOpen, setIsOpen, handleClose } = useContext(SidebarContext);
-  const { cart } = useContext(CartContext)
+  const { isOpen, handleClose } = useContext(SidebarContext);
+  const { cart, clearCart } = useContext(CartContext);
 
   return (
     <div
@@ -26,9 +26,38 @@ const Sidebar = (): JSX.Element => {
           <IoMdArrowForward className="text-2xl" />
         </div>
       </div>
-      <div>{cart.map((item) =>{
-        return <CartItem product={item} key={item.id}/>
-      })}</div>
+      <div>
+        {cart.map((item) => {
+          return <CartItem product={item} key={item.id} />;
+        })}
+      </div>
+      <div className="flex flex-col gap-y-3 py-4 mt-4">
+        <div className="flex w-full justify-between items-center">
+          {/* total */}
+          <div className="uppercase font-semibold ">
+            <span className="mr-2 ">Total:</span>1000 zł
+          </div>
+          {/* clear cart icon*/}
+          <div
+            onClick={clearCart}
+            className="cursor-pointer py-4 bg-red-500 text-white w-12 h-12 flex justify-center items-center text-xl"
+          >
+            <FiTrash2 />
+          </div>
+        </div>
+        <Link
+          to="/"
+          className="bg-gray-200 flex p-4 justify-center items-center text-primary w-full font-medium"
+        >
+          View Cart
+        </Link>
+        <Link
+          to="/"
+          className="bg-primary flex p-4 justify-center items-center text-white w-full font-medium"
+        >
+          Checkout
+        </Link>
+      </div>
     </div>
   );
 };

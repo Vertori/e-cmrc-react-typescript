@@ -10,7 +10,8 @@ type Props = {
 
 const CartItem = ({ product }: Props) => {
   const { id, title, image, price, amount } = product;
-  const { removeFromCart } = useContext(CartContext);
+  const { removeFromCart, increaseAmount, decreaseAmount } =
+    useContext(CartContext);
 
   return (
     <div className="flex gap-x-4 py-2 lg:px-6 border-b border-gray-200 w-full font-light text-gray-500">
@@ -41,7 +42,10 @@ const CartItem = ({ product }: Props) => {
             {/* quantity */}
             <div className="flex flex-1 max-w-[100px] items-center h-full border text-primary font-medium">
               {/* minus icon */}
-              <div className="flex flex-1 justify-center items-center cursor-pointer h-full">
+              <div
+                onClick={() => decreaseAmount(id)}
+                className="flex flex-1 justify-center items-center cursor-pointer h-full"
+              >
                 <IoMdRemove />
               </div>
               {/* amount */}
@@ -49,7 +53,10 @@ const CartItem = ({ product }: Props) => {
                 {amount}
               </div>
               {/* plus icon */}
-              <div className=" flex flex-1  justify-center items-center cursor-pointer h-full">
+              <div
+                onClick={() => increaseAmount(id)}
+                className=" flex flex-1  justify-center items-center cursor-pointer h-full"
+              >
                 <IoMdAdd />
               </div>
             </div>
