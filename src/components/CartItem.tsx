@@ -1,14 +1,16 @@
-import { ProductsType } from "../types"
+import { useContext } from "react";
+import { ProductsType } from "../types";
 import { Link } from "react-router-dom";
 import { IoMdClose, IoMdAdd, IoMdRemove } from "react-icons/io";
+import { CartContext } from "../contexts/CartContext";
 
 type Props = {
   product: ProductsType;
-}
+};
 
 const CartItem = ({ product }: Props) => {
-
   const { id, title, image, price, amount } = product;
+  const { removeFromCart } = useContext(CartContext);
 
   return (
     <div className="flex gap-x-4 py-2 lg:px-6 border-b border-gray-200 w-full font-light text-gray-500">
@@ -29,7 +31,7 @@ const CartItem = ({ product }: Props) => {
             </Link>
             {/* remove icon */}
             <div
-             
+              onClick={() => removeFromCart(id)}
               className="text-xl cursor-pointer "
             >
               <IoMdClose className="text-gray-500 hover:text-red-500 transition" />
@@ -39,7 +41,7 @@ const CartItem = ({ product }: Props) => {
             {/* quantity */}
             <div className="flex flex-1 max-w-[100px] items-center h-full border text-primary font-medium">
               {/* minus icon */}
-              <div  className="flex flex-1 justify-center items-center cursor-pointer h-full">
+              <div className="flex flex-1 justify-center items-center cursor-pointer h-full">
                 <IoMdRemove />
               </div>
               {/* amount */}
@@ -47,7 +49,7 @@ const CartItem = ({ product }: Props) => {
                 {amount}
               </div>
               {/* plus icon */}
-              <div  className=" flex flex-1  justify-center items-center cursor-pointer h-full">
+              <div className=" flex flex-1  justify-center items-center cursor-pointer h-full">
                 <IoMdAdd />
               </div>
             </div>
@@ -56,12 +58,14 @@ const CartItem = ({ product }: Props) => {
               {price} zł
             </div>
             {/* final price */}
-            <div className="flex flex-1 justify-end items-center text-primary font-medium">{`${amount !== undefined && (price*amount).toFixed(2)} zł`}</div>
+            <div className="flex flex-1 justify-end items-center text-primary font-medium">{`${
+              amount !== undefined && (price * amount).toFixed(2)
+            } zł`}</div>
           </div>
         </div>
       </div>
     </div>
   );
-}
+};
 
-export default CartItem
+export default CartItem;
