@@ -3,6 +3,7 @@ import { ProductsType } from "../types";
 import { CartContextType } from "../types";
 
 export const CartContext = createContext<CartContextType>({
+  cart: [],
   addToCart: () => {},
 });
 
@@ -35,7 +36,7 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   return (
-    <CartContext.Provider value={{ addToCart }}>
+    <CartContext.Provider value={{ cart, addToCart }}>
       {children}
     </CartContext.Provider>
   );

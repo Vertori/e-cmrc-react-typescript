@@ -4,10 +4,11 @@ import { CartContext } from "../contexts/CartContext";
 import { Link } from "react-router-dom";
 import { IoMdArrowForward } from "react-icons/io";
 import { FiTrash2 } from "react-icons/fi";
+import CartItem from "./CartItem";
 
 const Sidebar = (): JSX.Element => {
   const { isOpen, setIsOpen, handleClose } = useContext(SidebarContext);
-
+  const { cart } = useContext(CartContext)
 
   return (
     <div
@@ -25,6 +26,9 @@ const Sidebar = (): JSX.Element => {
           <IoMdArrowForward className="text-2xl" />
         </div>
       </div>
+      <div>{cart.map((item) =>{
+        return <CartItem product={item} key={item.id}/>
+      })}</div>
     </div>
   );
 };

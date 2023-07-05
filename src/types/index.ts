@@ -19,5 +19,6 @@ export type SidebarContextType = {
 };
 
 export type CartContextType = {
+    cart: ProductsType[];
     addToCart: (product: ProductsType, id: number) => void;
 }
