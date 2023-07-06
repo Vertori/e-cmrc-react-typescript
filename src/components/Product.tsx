@@ -8,9 +8,9 @@ type Props = {
   product: ProductsType;
 };
 
-const Product = ({ product }: Props) => {
+const Product = ({ product }: Props): JSX.Element => {
   const { id, image, category, title, price } = product;
-  const {addToCart} = useContext(CartContext)
+  const { addToCart } = useContext(CartContext);
 
   return (
     <div className="shadow-lg border border-gray-100 rounded-sm">

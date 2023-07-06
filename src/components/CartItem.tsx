@@ -8,7 +8,7 @@ type Props = {
   product: ProductsType;
 };
 
-const CartItem = ({ product }: Props) => {
+const CartItem = ({ product }: Props): JSX.Element => {
   const { id, title, image, price, amount } = product;
   const { removeFromCart, increaseAmount, decreaseAmount } =
     useContext(CartContext);
