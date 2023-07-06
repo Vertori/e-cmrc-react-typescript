@@ -25,4 +25,5 @@ export type CartContextType = {
   clearCart: () => void;
   increaseAmount: (id: number) => void;
   decreaseAmount: (id: number) => void;
+  itemAmount: number;
 };

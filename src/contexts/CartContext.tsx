@@ -9,11 +9,15 @@ export const CartContext = createContext<CartContextType>({
   clearCart: () => {},
   increaseAmount: () => {},
   decreaseAmount: () => {},
+  itemAmount: 0,
 });
 
 const CartProvider = ({ children }: { children: React.ReactNode }) => {
   // cart state
   const [cart, setCart] = useState<ProductsType[]>([]);
+
+  // item amount state
+  const [itemAmount, setItemAmount] = useState<number>(0);
 
   // add to cart
   const addToCart = (product: ProductsType, id: number) => {
@@ -95,6 +99,7 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
         clearCart,
         increaseAmount,
         decreaseAmount,
+        itemAmount,
       }}
     >
       {children}
