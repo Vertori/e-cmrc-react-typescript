@@ -10,6 +10,7 @@ export const CartContext = createContext<CartContextType>({
   increaseAmount: () => {},
   decreaseAmount: () => {},
   itemAmount: 0,
+  total: 0,
 });
 
 const CartProvider = ({ children }: { children: React.ReactNode }) => {
@@ -18,6 +19,20 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
 
   // item amount state
   const [itemAmount, setItemAmount] = useState<number>(0);
+
+  // total price state
+  const [total, setTotal] = useState<number>(0);
+
+  // updating total
+  useEffect(() => {
+    const totalValue = cart.reduce((accumulator, currentItem) => {
+      if (currentItem.amount) {
+        return accumulator + currentItem.price * currentItem.amount;
+      }
+      return accumulator;
+    }, 0);
+    setTotal(totalValue);
+  });
 
   // updating item amount
   useEffect(() => {
@@ -113,6 +128,7 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
         increaseAmount,
         decreaseAmount,
         itemAmount,
+        total,
       }}
     >
       {children}

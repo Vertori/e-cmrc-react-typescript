@@ -8,7 +8,7 @@ import CartItem from "./CartItem";
 
 const Sidebar = (): JSX.Element => {
   const { isOpen, handleClose } = useContext(SidebarContext);
-  const { cart, clearCart, itemAmount } = useContext(CartContext);
+  const { cart, clearCart, itemAmount, total } = useContext(CartContext);
 
   return (
     <div
@@ -37,7 +37,8 @@ const Sidebar = (): JSX.Element => {
         <div className="flex w-full justify-between items-center">
           {/* total */}
           <div className="uppercase font-semibold ">
-            <span className="mr-2 ">Total:</span>1000 zł
+            <span className="mr-2 ">Total:</span>
+            {total.toFixed(2)} zł
           </div>
           {/* clear cart icon*/}
           <div
