@@ -6,7 +6,7 @@ import { BiChevronRight } from "react-icons/bi";
 import { AiOutlineHome } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
-const MensClothing = () => {
+const MensClothing = (): JSX.Element => {
   const products = useContext(ProductContext);
 
   const filteredMensProducts = products?.filter((item) => {

@@ -11,7 +11,7 @@ import "swiper/css/navigation";
 import Product from "../components/Product";
 import SliderCard from "../components/SliderCard";
 
-const ProductDetails = () => {
+const ProductDetails = (): JSX.Element => {
   const { id } = useParams();
   const products = useContext(ProductContext);
   const { addToCart } = useContext(CartContext);

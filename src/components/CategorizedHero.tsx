@@ -2,7 +2,7 @@ type Props = {
   category: string;
 };
 
-const CategorizedHero = ({ category }: Props) => {
+const CategorizedHero = ({ category }: Props): JSX.Element => {
   return (
     <section className="h-[500px] bg-hero bg-no-repeat bg-cover bg-center py-24">
       <div className="container mx-auto flex justify-center h-full mt-12">
