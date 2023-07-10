@@ -5,7 +5,7 @@ type Props = {
   product: ProductsType;
 };
 
-const SliderCard = ({ product }: Props) => {
+const SliderCard = ({ product }: Props): JSX.Element => {
   const { id, image, category, title, price } = product;
   return (
     <Link to={`/product/${id}`}>
