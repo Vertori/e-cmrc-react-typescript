@@ -6,9 +6,9 @@ import ClipLoader from "react-spinners/ClipLoader";
 import { AiOutlineHome } from "react-icons/ai";
 import { BiChevronRight } from "react-icons/bi";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
-import Product from "../components/Product";
 import SliderCard from "../components/SliderCard";
 
 const ProductDetails = (): JSX.Element => {
@@ -95,7 +95,43 @@ const ProductDetails = (): JSX.Element => {
             </div>
           </div>
           {/* SLIDER */}
-          <div className="mt-32"></div>
+          <div className="mt-32">
+            <div className="text-xl mb-4 text-center md:text-start">
+              <span>Check other Products</span>
+            </div>
+            <Swiper
+              modules={[Navigation]}
+              loop={true}
+              spaceBetween={10}
+              slidesPerView={1}
+              slidesPerGroup={1}
+              navigation={true}
+              breakpoints={{
+                768: {
+                  slidesPerView: 2,
+                  slidesPerGroup: 2,
+                },
+                1024: {
+                  slidesPerView: 3,
+                  slidesPerGroup: 2,
+                },
+                1440: {
+                  slidesPerView: 4,
+                  slidesPerGroup: 2,
+                },
+              }}
+            >
+              <div className="flex">
+                {otherProducts?.map((product) => {
+                  return (
+                    <SwiperSlide key={product.title}>
+                      <SliderCard product={product} key={product.id} />
+                    </SwiperSlide>
+                  );
+                })}
+              </div>
+            </Swiper>
+          </div>
         </div>
       </section>
     </div>
